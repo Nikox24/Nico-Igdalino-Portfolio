@@ -467,6 +467,18 @@
     © 2025 | All rights reserved | Made by Angel Nico Igdalino
   </footer>
 
+<section id="visits" style="text-align: center; color: #00ffaa; font-size: 0.9rem; margin-top: 2rem;">
+  Page Visits: <span id="visit-count">Loading...</span>
+</section>
+
+<script>
+  fetch('counter.php')
+    .then(res => res.text())
+    .then(count => {
+      document.getElementById('visit-count').innerText = count;
+    });
+</script>
+  
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const text = "👨‍💻 web developer | cybersecurity";
     let i = 0;
