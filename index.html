@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Angel Nico Igdalino | Developer Portfolio 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+  <!-- ✅ SEO Meta -->
+  <meta name="description" content="NIKOX — Ethical Hacker and Full-Stack Developer specializing in cybersecurity tools, automation, and web development.">
+
+  <!-- ✅ Open Graph Meta Tags -->
+  <meta property="og:title" content="NIKOX | Developer Portfolio">
+  <meta property="og:description" content="Explore NIKOX's projects in ethical hacking, full-stack web dev, and automation tools.">
+  <meta property="og:image" content="https://i.imgur.com/r4v8E6v.jpeg">
+  <meta property="og:url" content="https://nikox-tool.onrender.com/">
+  <meta property="og:type" content="website">
+
+  <!-- ✅ Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NIKOX | Developer Portfolio">
+  <meta name="twitter:description" content="Explore NIKOX's projects in ethical hacking, full-stack web dev, and automation tools.">
+  <meta name="twitter:image" content="https://i.imgur.com/r4v8E6v.jpeg">
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="https://i.imgur.com/r4v8E6v.jpeg" type="image/jpeg">
+
+  <style>
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Fira Code', monospace;
+    }
+
+    body {
+      background-color: #0e0e0e;
+      color: #aaffaa;
+      padding: 2rem;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .menu-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .menu-button {
+      background-color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+      box-shadow: 0 0 8px #333;
+    }
+
+    .bar {
+      width: 20px;
+      height: 2px;
+      background-color: #000;
+      border-radius: 1px;
+    }
+
+    .menu-list {
+      margin-top: 0.5rem;
+      background-color: #121212;
+      color: #aaffaa;
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      right: 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .menu-list a {
+      color: #aaffaa;
+      text-decoration: none;
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    .menu-list a:hover {
+      color: #fff;
+      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+    }
+
+    .menu-list.rainbow-border {
+      border: 2px solid red;
+      animation: rainbowBorder 4s linear infinite;
+      box-shadow: 0 0 12px #00ffaa;
+    }
+
+    @keyframes rainbowBorder {
+      0% { border-color: red; }
+      20% { border-color: orange; }
+      40% { border-color: yellow; }
+      60% { border-color: green; }
+      80% { border-color: blue; }
+      100% { border-color: violet; }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .profile-pic-wrapper {
+      display: inline-block;
+      padding: 6px;
+      border-radius: 50%;
+      background: linear-gradient(270deg, violet, cyan, magenta, blue, violet);
+      background-size: 600% 600%;
+      animation: rgbflow 6s ease infinite;
+    }
+
+    .profile-pic-wrapper a {
+      display: inline-block;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    .animated-name {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(270deg, violet, cyan, magenta, blue, violet);
+      background-size: 1000% 1000%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbflow 6s ease infinite;
+      text-shadow: 0 0 10px violet;
+    }
+
+    @keyframes rgbflow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .typing-text {
+      color: #ccc;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      border-right: 2px solid #00ffcc;
+      animation: blink 0.75s infinite step-end;
+      display: inline-block;
+      padding-right: 5px;
+      min-width: 300px;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-icons a img {
+      width: 32px;
+      filter: invert(1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.2);
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background-color: #121212;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; bottom: -2px; right: -2px;
+      background: linear-gradient(270deg, #ff00cc, #00ffff, #6600ff, #ffcc00, #ff00cc);
+      background-size: 600% 600%;
+      z-index: -1;
+      border-radius: 12px;
+      animation: rgbflow 8s ease infinite;
+    }
+
+    h2 {
+      color: #66ffcc;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.3rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: #88ffcc;
+      text-decoration: none;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .description-text {
+      font-size: 0.85rem;
+      color: #aaffaa;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .lang span {
+      font-size: 0.9rem;
+      color: #aaffaa;
+      margin-bottom: 0.2rem;
+      display: inline-block;
+    }
+
+    .bar {
+      width: 100%;
+      height: 10px;
+      background-color: #1a1a1a;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 6px #00ccff88;
+      position: relative;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 400% 100%;
+      border-radius: 6px;
+      animation: rainbowFill 3s linear infinite, typewriterFill 2s ease forwards;
+    }
+
+    @keyframes rainbowFill {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @keyframes typewriterFill {
+      0% { width: 0; }
+      100% { width: var(--fill-width); }
+    }
+
+    #projects a {
+      font-weight: bold;
+      background: linear-gradient(270deg, #00ffff, #ff00ff, #00ccff, #6600ff, #00ffff);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbflow 6s ease infinite;
+      text-shadow: 0 0 6px #00ffff;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #fff;
+      padding: 1rem 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container" id="menuContainer">
+    <button class="menu-button" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="menu-list" id="menu">
+      <a href="#description">Description</a>
+      <a href="#description">Education</a>
+      <a href="#languages">Languages</a>
+      <a href="#Experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="#projects">Projects</a>
+      <a href="https://nikox-tool.onrender.com/" target="_blank">NIKOX TOOLS</a>
+    </div>
+  </div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://api3.apiapi.lat/f90f25327663bad1cf23d3735f3dfde0/download/82997651,6d9`,524g,8b8g,`gg91bbg5g8c/fc6a76f258337644e6cf3e62af474b40/" type="audio/mpeg">
+  </audio>
+
+  <header>
+    <div class="profile-pic-wrapper">
+      <a href="https://i.imgur.com/pMU6lpC.jpeg" target="_blank">
+        <img src="https://i.imgur.com/pMU6lpC.jpeg" alt="NIKOX Profile" class="profile-pic" />
+      </a>
+    </div>
+    <h1 class="animated-name">Angel Nico Igdalino (NIKOX)</h1>
+    <div class="typing-text" id="typing"></div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/19Z5oWJ8oS/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/@nikoxvlogsz24" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+      <a href="https://www.youtube.com/@NikoxVlogs24" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+    </div>
+  </header>
+
+  <section id="description"><p id="desc-typewriter" class="description-text"></p></section>
+
+<section id="education">
+  <h2>🎓 education</h2>
+  <ul>
+    <li>
+      <strong>Senior High:</strong><br>
+      <img src="https://i.imgur.com/TpdMTJj.jpeg" alt="Electron College Logo" style="width: 40px; vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+      Electron College Of Technical Education<br>
+      SHS - ICT | 2023–2025 (Graduate)<br>
+      Specialized in Information and Communication Technology,<br>
+      with a focus on programming.
+    </li><br>
+    <li>
+      <strong>Junior High:</strong><br>
+      <img src="https://i.imgur.com/vg1nhEl.jpeg" alt="Commonwealth High School Logo" style="width: 40px; vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+      Commonwealth High School - ALS | 2022
+    </li>
+  </ul>
+</section>
+  
+  <section id="languages">
+  <h2>📊 programming languages — in progress</h2>
+  <div class="progress-container">
+    <div class="lang">
+      <img src="https://i.imgur.com/4Aaur9K.jpeg" alt="JavaScript Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>JavaScript - 70%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 70%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/xlmqun2.jpeg" alt="Python Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>Python - 60%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 60%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/zdnyRxn.png" alt="HTML Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>HTML - 65%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 65%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/NTPiPih.png" alt="PHP Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>PHP - 35%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 35%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/okBssu4.png" alt="Bash Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>Bash - 60%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 60%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/WniC864.png" alt="Git Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>Git - 30%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 30%"></div></div>
+    </div>
+    <div class="lang">
+      <img src="https://i.imgur.com/WqYYJZ9.jpeg" alt="Linux Logo" style="width: 24px; vertical-align: middle; margin-right: 6px; border-radius: 4px;">
+      <span>Linux - 80%</span>
+      <div class="bar"><div class="fill" style="--fill-width: 80%"></div></div>
+    </div>
+  </div>
+</section>
+  
+  <section id="Experience">
+  <h2>💼 experience</h2>
+  <ul>
+    <li>
+      <strong>Termux & Linux Tools:</strong><br>
+      <img src="https://i.imgur.com/QDddA93.jpeg" alt="Termux & Linux Logo" style="width: 40px; vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+      Developed cybersecurity and automation tools using Termux on Android.<br>
+      Experienced in Bash scripting, package automation, and ethical hacking with Kali Linux and Ubuntu.
+    </li><br>
+    <li>
+      <strong>Web Development:</strong><br>
+      <img src="https://i.imgur.com/r0TFeew.jpeg" alt="Web Development Logo" style="width: 40px; vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+      Built full-stack websites using HTML, CSS, JavaScript, and PHP.<br>
+      Integrated backend systems like IP loggers, Telegram bots, and live admin panels.
+    </li><br>
+    <li>
+      <strong>FCA Chatbot Development:</strong><br>
+      <img src="https://i.imgur.com/UB2OAwW.jpeg" alt="FCA Chatbot Logo" style="width: 40px; vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+      Created a feature-rich Facebook chatbot using WS3-FCA.<br>
+      Implemented custom commands for music, IP tracking, anti-out system, and message automation.
+    </li>
+  </ul>
+  </section>
+  
+  <section id="skills">
+    <h2>🛠 skills & technologies</h2>
+    <ul>
+      <li>chat bot development</li>
+      <li>ethical hacking</li>
+      <li>fb auto react and share maker</li>
+      <li>pentesting</li>
+      <li>full-stack web development</li>
+      <li>kali linux, ubuntu, android</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>📬 contact</h2>
+    <ul>
+      <li>Contact me on Email and Buy me a coffee: <a href="/cdn-cgi/l/email-protection#4c2d222b292022252f23252b282d202522237e7f0c2b212d2520622f2321">angelnicoigdalino23</a></li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>💻 projects</h2>
+    <ul>
+      <li>Clink niyo po yung view project nandiyan po tools ko thank you po — <a href="https://nikox-tool.onrender.com/" target="_blank">view project</a></li>
+    </ul>
+  </section>
+
+  <footer id="page-footer">
+    © 2025 | All rights reserved | Made by Angel Nico Igdalino
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const text = "👨‍💻 web developer | cybersecurity";
+    let i = 0;
+    const typing = document.getElementById("typing");
+
+    function type() {
+      if (i < text.length) {
+        typing.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+
+    const descText = "hello, i'm nikox — a self-taught ethical hacker and full-stack web developer. i build backend and frontend systems, automate tasks, and create tools that solve real problems. my passion for cybersecurity and coding helps me design secure, efficient, and impactful solutions.";
+    let descIndex = 0;
+    const descElement = document.getElementById("desc-typewriter");
+
+    function typeDescription() {
+      if (descIndex < descText.length) {
+        descElement.innerHTML += descText.charAt(descIndex);
+        descIndex++;
+        setTimeout(typeDescription, 35);
+      }
+    }
+
+    window.onload = () => {
+      type();
+      typeDescription();
+    };
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+      menu.classList.toggle("rainbow-border");
+    }
+
+    document.addEventListener("click", (e) => {
+      const menu = document.getElementById("menu");
+      const btn = document.querySelector(".menu-button");
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.style.display = "none";
+        menu.classList.remove("rainbow-border");
+      }
+    });
+
+    const audio = document.getElementById("bg-music");
+    audio.play().catch(() => {
+      const enablePlay = () => {
+        audio.play();
+        document.removeEventListener("click", enablePlay);
+      };
+      document.addEventListener("click", enablePlay);
+    });
+
+    // Show/hide menu on scroll direction
+    let lastScrollTop = 1;
+    window.addEventListener("scroll", () => {
+      const menuContainer = document.getElementById("menuContainer");
+      const footer = document.getElementById("page-footer");
+      const scrollY = window.scrollY;
+      const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight;
+
+      if (scrollY < lastScrollTop) {
+        menuContainer.style.opacity = 1;
+        menuContainer.style.visibility = "visible";
+      } else {
+        menuContainer.style.opacity = 1;
+        menuContainer.style.visibility = "hidden";
+      }
+
+      lastScrollTop = scrollY <= 1 ? 1 : scrollY;
+
+      footer.style.opacity = atBottom ? 1 : 1;
+      footer.style.visibility = atBottom ? "visible" : "hidden";
+    });
+  </script>
+</body>
+</html> 
