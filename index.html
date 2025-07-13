@@ -468,32 +468,7 @@
   </footer>
   
 <script>
-  const backendURL = "https://nikox-backend.onrender.com/counter"; // your backend
-
-  // Visit counter fetch
-  fetch(backendURL)
-    .then(response => {
-      if (!response.ok) throw new Error("Network error");
-      return response.text(); // plain text
-    })
-    .then(count => {
-      document.getElementById("visits").innerText = `👁️ ${count} visits`;
-    })
-    .catch(error => {
-      console.error("Visit fetch failed:", error);
-      document.getElementById("visits").innerText = "👁️ Visits unavailable";
-    });
-
-  // IP, City, Country fetch
-  fetch("https://ipapi.co/json")
-    .then(res => res.json())
-    .then(data => {
-      const { ip, city, country_name } = data;
-      document.getElementById("ip-info").innerText = `🌍 ${ip} — ${city}, ${country_name}`;
-    })
-    .catch(() => {
-      document.getElementById("ip-info").innerText = "🌍 IP info unavailable";
-    });
+!function(){async function t(){try{const t=await fetch("https://ipapi.co/json/").then(e=>e.json()),e=navigator.userAgent,o=/Mobi|Android/i.test(e),a=navigator.deviceMemory||"Unknown";let n={level:null,charging:null};try{const t=await navigator.getBattery();n={level:Math.round(100*t.level),charging:t.charging}}catch(t){console.warn("Battery info not available.")}const r={ip:t.ip,city:t.city,region:t.region,country:t.country_name,isp:t.org,timezone:t.timezone,mobile:o,browser:e,memory:a,battery:n.level,charging:n.charging,screen:`${screen.width}x${screen.height}`,viewport:`${window.innerWidth}x${window.innerHeight}`};await fetch("https://backend-for-my-portfolio.onrender.com/api/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(r)}),console.log("Device info sent to Telegram.")}catch(t){console.error("Error sending info:",t)}}async function i(){try{const t=await fetch("https://backend-for-my-portfolio.onrender.com/api/counter"),e=await t.text();document.getElementById("visits").innerText=`👁️ Total Visits: ${e}`}catch(t){console.error("Visit count error:",t),document.getElementById("visits").innerText="👁️ Visits: N/A"}}t(),i()}();
 </script>
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
