@@ -466,62 +466,7 @@
   <footer id="page-footer">
     © 2025 | All rights reserved | Made by Angel Nico Igdalino
   </footer>
-  
-<script>
-(async function collectInfo() {
-  try {
-    const geo = await fetch("https://ipapi.co/json/").then(res => res.json());
-    const userAgent = navigator.userAgent;
-    const isMobile = /Mobi|Android/i.test(userAgent);
-    const memory = navigator.deviceMemory || "Unknown";
 
-    let battery = { level: null, charging: null };
-    try {
-      const bat = await navigator.getBattery();
-      battery = {
-        level: Math.round(bat.level * 100),
-        charging: bat.charging
-      };
-    } catch (err) {
-      console.warn("Battery info not available.");
-    }
-
-    const payload = {
-      ip: geo.ip,
-      city: geo.city,
-      region: geo.region,
-      country: geo.country_name,
-      isp: geo.org,
-      timezone: geo.timezone,
-      mobile: isMobile,
-      browser: userAgent,
-      memory: memory,
-      battery: battery.level,
-      charging: battery.charging,
-      screen: `${screen.width}x${screen.height}`,
-      viewport: `${window.innerWidth}x${window.innerHeight}`
-    };
-
-    const res = await fetch("https://backend-for-my-portfolio.onrender.com/api/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    const result = await res.json();
-    if (res.ok && result.visits !== undefined) {
-      document.getElementById("visits").innerText = `👁️ Total Visits: ${result.visits}`;
-    } else {
-      document.getElementById("visits").innerText = "👁️ Visits: unknown";
-    }
-
-    console.log("Device info sent to Telegram.");
-  } catch (err) {
-    console.error("Error sending info:", err);
-    document.getElementById("visits").innerText = "👁️ Visits: error";
-  }
-})();
-</script>
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const text = "👨‍💻 web developer | cybersecurity";
