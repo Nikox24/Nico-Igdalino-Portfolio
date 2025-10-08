@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -323,7 +322,7 @@
     </button>
     <div class="menu-list" id="menu">
       <a href="#description">Description</a>
-      <a href="#description">Education</a>
+      <a href="#education">Education</a>
       <a href="#languages">Languages</a>
       <a href="#Experience">Experience</a>
       <a href="#contact">Contact</a>
@@ -332,9 +331,8 @@
     </div>
   </div>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://api3.apiapi.lat/f90f25327663bad1cf23d3735f3dfde0/download/82997651,6d9`,524g,8b8g,`gg91bbg5g8c/fc6a76f258337644e6cf3e62af474b40/" type="audio/mpeg">
-  </audio>
+  <!-- Background Music (source will be set via JS from Aryan API; will play after user click / scroll / touch) -->
+  <audio id="bg-music" loop></audio>
 
   <header>
     <div class="profile-pic-wrapper">
@@ -513,16 +511,45 @@
       }
     });
 
-    const audio = document.getElementById("bg-music");
-    audio.play().catch(() => {
-      const enablePlay = () => {
-        audio.play();
-        document.removeEventListener("click", enablePlay);
-      };
-      document.addEventListener("click", enablePlay);
-    });
+    // --------------- MUSIC: fetch from Aryan API and play AFTER user interaction ---------------
+    async function loadMusicAndSetupPlay() {
+      try {
+        const res = await fetch("https://aryanapi.up.railway.app/api/youtubeplay?query=Pyschosocial");
+        const data = await res.json();
 
-    // Show/hide menu on scroll direction
+        if (data && data.status && data.data && data.data.audio) {
+          const audio = document.getElementById("bg-music");
+          audio.src = data.data.audio;
+          audio.loop = true;
+          audio.preload = "auto";
+
+          // Only play after a user gesture (click / scroll / touch)
+          const playOnce = () => {
+            audio.play().catch(err => {
+              // If play still fails, log but don't crash
+              console.warn("Audio play failed:", err);
+            });
+            // remove listeners after first interaction
+            document.removeEventListener("click", playOnce);
+            document.removeEventListener("scroll", playOnce);
+            document.removeEventListener("touchstart", playOnce);
+          };
+
+          document.addEventListener("click", playOnce, { once: true });
+          document.addEventListener("scroll", playOnce, { once: true });
+          document.addEventListener("touchstart", playOnce, { once: true });
+        } else {
+          console.warn("Music API returned no usable audio.", data);
+        }
+      } catch (err) {
+        console.error("Music load failed:", err);
+      }
+    }
+
+    // Start loading the audio source immediately (won't autoplay until user interacts)
+    loadMusicAndSetupPlay();
+
+    // Show/hide menu on scroll direction & footer visibility
     let lastScrollTop = 1;
     window.addEventListener("scroll", () => {
       const menuContainer = document.getElementById("menuContainer");
@@ -545,4 +572,4 @@
     });
   </script>
 </body>
-</html> 
+</html>
