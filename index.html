@@ -42,80 +42,96 @@
       scroll-behavior: smooth;
     }
 
-    .menu-container {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9999;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
+    /* Menu container */
+.menu-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
 
-    .menu-button {
-      background-color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      padding: 8px;
-      box-shadow: 0 0 8px #333;
-    }
+/* Hamburger button */
+.menu-button {
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  box-shadow: 0 0 8px #333;
+}
 
-    .bar {
-      width: 20px;
-      height: 2px;
-      background-color: #000;
-      border-radius: 1px;
-    }
+.bar {
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  border-radius: 1px;
+}
 
     .menu-list {
-      margin-top: 0.5rem;
-      background-color: #121212;
-      color: #aaffaa;
-      border-radius: 10px;
-      padding: 0.5rem 1rem;
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      right: 0;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-      transition: all 0.3s ease;
-    }
+  margin-top: 0.5rem;
+  background-color: #121212;
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
 
-    .menu-list a {
-      color: #aaffaa;
-      text-decoration: none;
-      margin: 0.3rem 0;
-      font-size: 0.95rem;
-      transition: color 0.2s ease, text-shadow 0.2s ease;
-    }
+.menu-list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaffaa;
+  text-decoration: none;
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
 
-    .menu-list a:hover {
-      color: #fff;
-      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
-    }
+.menu-list a img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1) brightness(1.5); /* Makes icons white/light on black bg */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
 
-    .menu-list.rainbow-border {
-      border: 2px solid red;
-      animation: rainbowBorder 4s linear infinite;
-      box-shadow: 0 0 12px #00ffaa;
-    }
+.menu-list a:hover {
+  background-color: #fff;
+  color: #111;
+}
 
-    @keyframes rainbowBorder {
-      0% { border-color: red; }
-      20% { border-color: orange; }
-      40% { border-color: yellow; }
-      60% { border-color: green; }
-      80% { border-color: blue; }
-      100% { border-color: violet; }
-    }
+
+/* Rainbow border animation */
+.menu-list.rainbow-border {
+  border: 2px solid red;
+  animation: rainbowBorder 4s linear infinite;
+  box-shadow: 0 0 12px #00ffaa;
+}
+
+@keyframes rainbowBorder {
+  0% { border-color: red; }
+  20% { border-color: orange; }
+  40% { border-color: yellow; }
+  60% { border-color: green; }
+  80% { border-color: blue; }
+  100% { border-color: violet; }
+}
 
     header {
       text-align: center;
@@ -311,26 +327,302 @@
       visibility: hidden;
       transition: opacity 0.5s ease;
     }
+    /* Toggle container */
+.bg-toggle-container {
+  position: fixed;
+  top: 5.5rem; 
+  right: 1rem;
+  z-index: 9998;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Dark Mode Button (Blue) */
+#bgToggleBtn {
+  background-color: #0066ff;
+  color: #fff;
+  border: 2px solid #0066ff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold; /* ✅ Bold icon/text */
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  transition: all 0.4s ease;
+}
+
+/* Light Mode Button (White + Static Border) */
+#bgToggleBtn.light-mode {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #00ffaa; /* ✅ static border matches menu container */
+  border-radius: 50%;
+  font-weight: bold; /* ✅ Bold icon/text */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Hover effects */
+#bgToggleBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0,102,255,0.8);
+}
+#bgToggleBtn.light-mode:hover {
+  box-shadow: 0 0 12px rgba(0,255,170,0.8);
+}
+
+/* ---------------- Light Mode Styles ---------------- */
+body.light-mode {
+  background-color: #ffffff;
+  color: #111111;
+  transition: all 0.5s ease;
+  font-weight: bold; /* ✅ All body text bold */
+}
+
+body.light-mode a {
+  color: #0066ff;
+  text-shadow: none;
+  font-weight: bold; /* ✅ Bold links */
+}
+
+body.light-mode h2 {
+  color: #003366;
+  border-bottom-color: #ccc;
+  font-weight: bold; /* ✅ Bold headings */
+}
+
+body.light-mode section {
+  background-color: #f9f9f9;
+  color: #111111;
+  border-color: transparent;
+  transition: all 0.5s ease;
+}
+
+body.light-mode .menu-list {
+  background-color: #f1f1f1;
+  color: #111111;
+  font-weight: bold; /* ✅ Bold menu links */
+}
+
+body.light-mode .menu-list a {
+  color: #003366;
+  font-weight: bold;
+}
+
+body.light-mode .description-text {
+  color: #222222;
+  font-weight: bold; /* ✅ Bold description text */
+}
+
+body.light-mode .typing-text {
+  color: #555555;
+  font-weight: bold; /* ✅ Bold typewriter text */
+  border-right-color: #003366;
+}
+
+body.light-mode .progress-container .lang span {
+  color: #111111; /* ✅ Dark text for programming languages */
+  font-weight: bold; /* ✅ Bold language names */
+}
+
+body.light-mode .social-icons a img {
+  filter: invert(0);
+}
+
+body.light-mode footer {
+  background-color: #f1f1f1;
+  color: #111111;
+  font-weight: bold; /* ✅ Bold footer */
+}
+
+/* Smooth transition for all elements */
+body, section, header, footer, .menu-list, h2, p, a, .typing-text, .progress-container .lang span {
+  transition: all 0.5s ease;
+}
+
+/* ---------------- Typewriter & Description Bold ---------------- */
+.typing-text, .description-text {
+  font-weight: bold; /* Always bold */
+}
+
+/* Programming languages progress text bold */
+.progress-container .lang span {
+  font-weight: bold;
+}
+/* Rainbow text animation for section title in light mode only */
+@keyframes rgbTextFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Apply to Education title in light mode only */
+body.light-mode #education h2 {
+  background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbTextFlow 6s ease infinite;
+  text-shadow: 0 0 6px #fff;
+  font-weight: bold; /* Ensure bold */
+}
+/* Rainbow animation for footer name in light mode */
+body.light-mode .footer-name {
+  font-weight: bold;
+  background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbTextFlow 6s ease infinite;
+  text-shadow: 0 0 6px #fff;
+}
+
+
+/* Animated rainbow border using ::before pseudo-element */
+.menu-list a[href="#description"]::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  border-radius: 14px;
+  z-index: -1;
+  animation: rainbow 4s linear infinite;
+  opacity: 0.6; /* translucent border */
+}
+
+/* Keep inner content above the border */
+.menu-list a[href="#description"] * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Rainbow animation */
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Thin white divider above Description */
+/* Default dark mode */
+.menu-divider {
+  width: 100%;
+  height: 3px;
+  background-color: #fff; /* white in dark mode */
+  margin-bottom: 6px;
+  border-radius: 1px;
+  transition: background-color 0.3s ease;
+}
+
+/* Light mode */
+body.light-mode .menu-divider {
+  background-color: #000; /* black in light mode */
+}
+.menu-datetime-box {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  text-align: center;
+  background: rgba(255, 0, 0, 0.2); /* initial translucent red */
+  animation: rainbowBackground 5s linear infinite;
+  border: 2px solid rgba(255,255,255,0.5); /* optional thin white border */
+}
+
+.menu-datetime {
+  font-size: 0.5rem; /* 50% of description link */
+  color: #fff;
+  text-align: center;
+  user-select: none;
+}
+
+/* Rainbow background animation */
+@keyframes rainbowBackground {
+  0%   { background-color: rgba(255,0,0,0.2); }
+  16%  { background-color: rgba(255,127,0,0.2); }
+  33%  { background-color: rgba(255,255,0,0.2); }
+  50%  { background-color: rgba(0,255,0,0.2); }
+  66%  { background-color: rgba(0,0,255,0.2); }
+  83%  { background-color: rgba(75,0,130,0.2); }
+  100% { background-color: rgba(148,0,211,0.2); }
+}
+
+/* Light mode adaptation */
+body.light-mode .menu-datetime {
+  color: #000;
+}
+/* MENU title */
+.menu-title {
+  font-weight: bold;
+  color: #fff;           /* default dark mode */
+  font-size: 1rem;       /* slightly bigger than datetime */
+  margin-bottom: 10px;    /* spacing before next element */
+  user-select: none;
+  transition: color 0.3s ease; /* smooth color change on mode toggle */
+}
+
+/* LIGHT MODE ADAPTATION */
+body.light-mode .menu-title {
+  color: #000; /* black text in light mode */
+}
   </style>
 </head>
 <body>
-  <div class="menu-container" id="menuContainer">
-    <button class="menu-button" onclick="toggleMenu()">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <div class="menu-list" id="menu">
-      <a href="#description">Description</a>
-      <a href="#education">Education</a>
-      <a href="#languages">Languages</a>
-      <a href="#Experience">Experience</a>
-      <a href="#contact">Contact</a>
-      <a href="#projects">Projects</a>
-      <a href="https://nikox-tool.onrender.com/" target="_blank">NIKOX TOOLS</a>
-    </div>
+<!-- Menu Container -->
+<div class="menu-container" id="menuContainer">
+  <button class="menu-button" onclick="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <div class="menu-list" id="menu">
+  <div class="menu-title">MENU</div>
+    <div class="menu-datetime-box">
+  <div class="menu-datetime" id="menuDatetime"></div>
+</div>
+      <!-- White divider above Description -->
+  <div class="menu-divider"></div>
+    <a href="#description">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnenFXLZz0Js90n9PWQ9lTxP2o7XcpVbCGZvjzl_V9Ml-JbJwhEHP47MXS&s=10" alt="Description Icon"/>
+      Description
+    </a>
+    <a href="#education">
+      <img src="https://cdn5.vectorstock.com/i/1000x1000/60/09/academic-education-icon-on-a-white-background-vector-34596009.jpg" alt="Education Icon"/>
+      Education
+    </a>
+    <a href="#languages">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGNaI8uMAUcJj1EVlafQtWh4pLU9UofnsErGsaY7SeZg&s=10" alt="Languages Icon"/>
+      Languages
+    </a>
+    <a href="#Experience">
+      <img src="https://cdn-icons-png.flaticon.com/256/1154/1154603.png" alt="Experience Icon"/>
+      Experience
+    </a>
+    <a href="#contact">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07mTRufjxAmEFMeuGSf0XeZP4pp6B8TlWhmeZbtnJFA&s=10" alt="Contact Icon"/>
+      Contact
+    </a>
+    <a href="#projects">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLjW5UOqw34XmYOXIRfF27gl2TBLwJw2SoDQ8LtzlJCw&s=10" alt="Projects Icon"/>
+      Projects
+    </a>
+      <!-- White divider above Description -->
+  <div class="menu-divider"></div> 
+    <a href="https://nikox-tool.onrender.com/" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2249/2249538.png" alt="Tools Icon"/>
+      NIKOX TOOLS
+    </a>
   </div>
-
+  </div>
+<!-- Dark/Light Mode Toggle Button -->
+<div class="bg-toggle-container">
+  <button id="bgToggleBtn" class="dark-mode">🌙</button>
+</div>
   <!-- Background Music (source will be set via JS from Aryan API; will play after user click / scroll / touch) -->
   <audio id="bg-music" loop></audio>
 
@@ -346,6 +638,10 @@
       <a href="https://www.facebook.com/share/19Z5oWJ8oS/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
       <a href="https://www.tiktok.com/@nikoxvlogsz24" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
       <a href="https://www.youtube.com/@NikoxVlogs24" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+        <a href="https://github.com/Nikox24" target="_blank" title="GitHub">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" width="30">
+  </a>
+</div>
     </div>
   </header>
 
@@ -460,10 +756,13 @@
       <li>Clink niyo po yung view project nandiyan po tools ko thank you po — <a href="https://nikox-tool.onrender.com/" target="_blank">view project</a></li>
     </ul>
   </section>
-
-  <footer id="page-footer">
-    © 2025 | All rights reserved | Made by Angel Nico Igdalino
-  </footer>
+<footer id="page-footer">
+  © 2025 | All rights reserved | Made by 
+  <span class="footer-name">Angel Nico Igdalino</span>
+  <div class="footer-ping">
+    <span id="ping-value">--</span> ms
+  </div>
+</footer>
 
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -511,65 +810,230 @@
       }
     });
 
-    // --------------- MUSIC: fetch from Aryan API and play AFTER user interaction ---------------
-    async function loadMusicAndSetupPlay() {
-      try {
-        const res = await fetch("https://aryanapi.up.railway.app/api/youtubeplay?query=Pyschosocial");
-        const data = await res.json();
+// --------------- MUSIC: fetch from Shazam API and play AFTER user interaction ---------------
+async function loadMusicAndSetupPlay() {
+  try {
 
-        if (data && data.status && data.data && data.data.audio) {
-          const audio = document.getElementById("bg-music");
-          audio.src = data.data.audio;
-          audio.loop = true;
-          audio.preload = "auto";
+    const res = await fetch(
+      "https://betadash-api-swordslush-production.up.railway.app/shazam?title=carinobrutal&limit=1"
+    );
 
-          // Only play after a user gesture (click / scroll / touch)
-          const playOnce = () => {
-            audio.play().catch(err => {
-              // If play still fails, log but don't crash
-              console.warn("Audio play failed:", err);
-            });
-            // remove listeners after first interaction
-            document.removeEventListener("click", playOnce);
-            document.removeEventListener("scroll", playOnce);
-            document.removeEventListener("touchstart", playOnce);
-          };
+    const data = await res.json();
 
-          document.addEventListener("click", playOnce, { once: true });
-          document.addEventListener("scroll", playOnce, { once: true });
-          document.addEventListener("touchstart", playOnce, { once: true });
-        } else {
-          console.warn("Music API returned no usable audio.", data);
-        }
-      } catch (err) {
-        console.error("Music load failed:", err);
-      }
+    console.log("Music API Response:", data);
+
+    // ✅ FIXED: Match Shazam API response format
+    if (
+      data &&
+      data.results &&
+      data.results.length > 0 &&
+      data.results[0].previewUrl
+    ) {
+
+      const audio = document.getElementById("bg-music");
+
+      // Use previewUrl from API
+      audio.src = data.results[0].previewUrl;
+      audio.loop = true;
+      audio.preload = "auto";
+
+      console.log(
+        "✅ Music Loaded:",
+        data.results[0].title
+      );
+
+      // Only play after a user gesture (click / scroll / touch)
+      const playOnce = () => {
+
+        audio.play().catch(err => {
+
+          console.warn(
+            "Audio play failed:",
+            err
+          );
+
+        });
+
+        // remove listeners after first interaction
+        document.removeEventListener("click", playOnce);
+        document.removeEventListener("scroll", playOnce);
+        document.removeEventListener("touchstart", playOnce);
+
+      };
+
+      document.addEventListener(
+        "click",
+        playOnce,
+        { once: true }
+      );
+
+      document.addEventListener(
+        "scroll",
+        playOnce,
+        { once: true }
+      );
+
+      document.addEventListener(
+        "touchstart",
+        playOnce,
+        { once: true }
+      );
+
     }
+
+    else {
+
+      console.warn(
+        "❌ Music API returned no usable audio.",
+        data
+      );
+
+    }
+
+  }
+
+  catch (err) {
+
+    console.error(
+      "❌ Music load failed:",
+      err
+    );
+
+  }
+}
+
+// Start loading the audio source immediately
+loadMusicAndSetupPlay();
 
     // Start loading the audio source immediately (won't autoplay until user interacts)
     loadMusicAndSetupPlay();
+const bgToggleBtn = document.getElementById("bgToggleBtn");
+const bgToggleBtnContainer = document.querySelector(".bg-toggle-container");
+let darkMode = true; // starts dark
 
-    // Show/hide menu on scroll direction & footer visibility
-    let lastScrollTop = 1;
-    window.addEventListener("scroll", () => {
-      const menuContainer = document.getElementById("menuContainer");
-      const footer = document.getElementById("page-footer");
-      const scrollY = window.scrollY;
-      const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight;
+// Dark/Light Toggle
+bgToggleBtn.addEventListener("click", () => {
+  const sections = document.querySelectorAll("section");
+  const menuList = document.getElementById("menu");
+  const footer = document.getElementById("page-footer");
 
-      if (scrollY < lastScrollTop) {
-        menuContainer.style.opacity = 1;
-        menuContainer.style.visibility = "visible";
-      } else {
-        menuContainer.style.opacity = 1;
-        menuContainer.style.visibility = "hidden";
-      }
+  if(darkMode){
+    document.body.classList.add("light-mode");
+    sections.forEach(sec => sec.classList.add("light-mode"));
+    menuList.classList.add("light-mode");
+    footer.classList.add("light-mode");
 
-      lastScrollTop = scrollY <= 1 ? 1 : scrollY;
+    bgToggleBtn.classList.add("light-mode");
+    bgToggleBtn.classList.remove("dark-mode");
+    bgToggleBtn.textContent = "☀️";
+  } else {
+    document.body.classList.remove("light-mode");
+    sections.forEach(sec => sec.classList.remove("light-mode"));
+    menuList.classList.remove("light-mode");
+    footer.classList.remove("light-mode");
 
-      footer.style.opacity = atBottom ? 1 : 1;
-      footer.style.visibility = atBottom ? "visible" : "hidden";
-    });
+    bgToggleBtn.classList.remove("light-mode");
+    bgToggleBtn.classList.add("dark-mode");
+    bgToggleBtn.textContent = "🌙";
+  }
+  darkMode = !darkMode;
+});
+
+// Scroll behavior for menu and toggle button
+let lastScrollTop = 1;
+window.addEventListener("scroll", () => {
+  const menuContainer = document.getElementById("menuContainer");
+  const footer = document.getElementById("page-footer");
+  const scrollY = window.scrollY;
+  const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight;
+
+  // Menu
+  if (scrollY < lastScrollTop) {
+    menuContainer.style.opacity = 1;
+    menuContainer.style.visibility = "visible";
+  } else {
+    menuContainer.style.opacity = 1;
+    menuContainer.style.visibility = "hidden";
+  }
+
+  // Toggle button
+  if (scrollY < lastScrollTop) {
+    bgToggleBtnContainer.style.opacity = 1;
+    bgToggleBtnContainer.style.visibility = "visible";
+  } else {
+    bgToggleBtnContainer.style.opacity = 0;
+    bgToggleBtnContainer.style.visibility = "hidden";
+  }
+
+  lastScrollTop = scrollY <= 1 ? 1 : scrollY;
+
+  // Footer visibility
+  footer.style.opacity = atBottom ? 1 : 1;
+  footer.style.visibility = atBottom ? "visible" : "hidden";
+});
+const pingValue = document.getElementById("ping-value");
+const footer = document.getElementById("page-footer");
+
+// Live ping measurement
+async function updatePing() {
+  const start = performance.now();
+  try {
+    await fetch(window.location.href, { cache: "no-store", method: "HEAD" });
+    const end = performance.now();
+    const ping = Math.round(end - start);
+    pingValue.textContent = ping;
+  } catch {
+    pingValue.textContent = "--";
+  }
+}
+
+// Update ping every second
+setInterval(updatePing, 1000);
+
+// Show footer only at the bottom of the page
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+
+  if (scrollY + windowHeight >= docHeight - 5) { // near bottom
+    footer.style.opacity = 1;
+    footer.style.visibility = "visible";
+  } else {
+    footer.style.opacity = 0;
+    footer.style.visibility = "hidden";
+  }
+  function updateMenuDateTime() {
+  const datetimeEl = document.getElementById("menuDatetime");
+  if (!datetimeEl) return;
+
+  const now = new Date();
+
+  // Day of week
+  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const dayName = days[now.getDay()];
+
+  // Month
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const monthName = months[now.getMonth()];
+
+  const date = now.getDate();
+  const year = now.getFullYear();
+
+  // 12-hour format
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // convert 0 to 12
+
+  datetimeEl.textContent = `${dayName}, ${monthName} ${date}, ${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+// Update every second
+setInterval(updateMenuDateTime, 1000);
+updateMenuDateTime(); // initial call
+});
   </script>
 </body>
 </html>
